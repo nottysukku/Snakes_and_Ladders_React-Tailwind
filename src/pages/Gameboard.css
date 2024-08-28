@@ -1,0 +1,90 @@
+/* App.css */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-grow {
+    flex-grow: 1;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .bg-gray-100 {
+    background-color: #f7fafc;
+  }
+  
+  .bg-white {
+    background-color: #ffffff;
+  }
+  
+  .bg-red-500 {
+    background-color: #f56565;
+  }
+  
+  .bg-gray-300 {
+    background-color: #e2e8f0;
+  }
+  
+  .p-4 {
+    padding: 1rem;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .h-screen {
+    height: 100vh;
+  }
+  
+  .h-16 {
+    height: 4rem;
+  }
+  
+  .w-16 {
+    width: 4rem;
+  }
+  
+  .h-18 {
+    height: 4.5rem;
+  }
+  
+  .w-48 {
+    width: 12rem;
+  }
+  
+  .font-extrabold {
+    font-weight: 800;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
