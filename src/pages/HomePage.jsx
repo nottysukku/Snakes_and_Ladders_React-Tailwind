@@ -14,7 +14,7 @@ const HomePage = ({ onTransitionToGameboard, onTransitionToGameboardAI }) => {
     <div className='flex h-fit justify-center items-center sm:gap-96'>
       <div className='w-3/5 h-screen flex flex-col text-white font-extrabold lg:text-5xl text-sm bg-slate-900'>
         <div className='text-center'>Snakes and Ladders</div>
-        <img src='src/assets/snakesandladders.png' className='h-44 mt-10 w-1/2 m-auto lg:h-96' alt='' />
+        <img src='https://i.postimg.cc/VNb6vCck/snakesandladders.png' className='h-44 mt-10 w-1/2 m-auto lg:h-96' alt='' />
         <div className='flex flex-col h-full mt-5 '>
           <div
             onClick={handleGameAI}
