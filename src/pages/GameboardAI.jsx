@@ -34,7 +34,7 @@ const snakesAndLadders = {
 
 function GameboardAI() {
   const [diceState, setDiceState] = useState({ value: 1, image: diceImages[0] });
-  const [playerPositions, setPlayerPositions] = useState([1, 1]);
+  const [playerPositions, setPlayerPositions] = useState([95, 1]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
@@ -54,7 +54,7 @@ function GameboardAI() {
 
   const getCoordinates = (position) => {
     const cell = document.getElementById(position);
-    if (!cell) return { x: 0, y: 0 };
+    if (!cell) return { x: 1, y: 1 };
 
     const { top, left } = cell.getBoundingClientRect();
     const boardRect = boardRef.current.getBoundingClientRect();
@@ -82,48 +82,58 @@ function GameboardAI() {
       setDiceState({ value: finalValue, image: diceImages[finalValue - 1] });
       movePlayer(finalValue);
       setIsDiceRolling(false);
-    }, 1000);
+    }, 1500);
   };
 
   const movePlayer = async (spaces) => {
     setIsMoving(true);
-    let newPosition = playerPositions[currentPlayer];
-
-    for (let i = 0; i < spaces; i++) {
-      newPosition++;
-      if (newPosition > 100) {
-        newPosition = 100 - (newPosition - 100);
-      }
-      await new Promise(resolve => setTimeout(resolve, 300));
+  
+    let currentPos = playerPositions[currentPlayer];
+    let targetPos = currentPos + spaces;
+    let finalPos = currentPos;
+  
+    // Check if the move would exceed 100
+    if (targetPos > 100) {
+      targetPos = 100 - (targetPos - 100);
+    }
+  
+    // Move step by step
+    while (finalPos < targetPos) {
+      finalPos++;
+  
       setPlayerPositions(prev => {
         const newPositions = [...prev];
-        newPositions[currentPlayer] = newPosition;
+        newPositions[currentPlayer] = finalPos;
         return newPositions;
       });
+  
+      // Add a delay between each step
+      await new Promise(resolve => setTimeout(resolve, 200));
     }
-
-    // Check for snakes and ladders
-    if (snakesAndLadders[newPosition]) {
+  
+    // Check for snakes and ladders only if we land exactly on one
+    if (snakesAndLadders[finalPos]) {
       await new Promise(resolve => setTimeout(resolve, 500));
-      newPosition = snakesAndLadders[newPosition];
+      finalPos = snakesAndLadders[finalPos];
       setPlayerPositions(prev => {
         const newPositions = [...prev];
-        newPositions[currentPlayer] = newPosition;
+        newPositions[currentPlayer] = finalPos;
         return newPositions;
       });
     }
-
-    // Check for win condition
-    if (newPosition === 100) {
+  
+    // Win condition check: only win if the final position is exactly 100
+    if (finalPos === 100) {
       setGameOver(true);
       setWinner(currentPlayer);
     } else {
       // Switch to the next player
       setCurrentPlayer(prevPlayer => (prevPlayer + 1) % 2);
     }
-
+  
     setIsMoving(false);
   };
+  
 
   const resetGame = () => {
     setPlayerPositions([1, 1]);
@@ -214,7 +224,7 @@ function GameboardAI() {
               alt={`Player ${playerIndex + 1}`}
               className="absolute lg:w-12 lg:h-12 w-10 h-10"
               animate={getCoordinates(playerPositions[playerIndex])}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              transition={{ type: 'spring', stiffness: 80, damping: 20 }}
               initial={{ x: 0, y: 0 }}
             />
           ))}
