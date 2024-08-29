@@ -28,7 +28,7 @@ const dicerollsound = new Audio('https://codeskulptor-demos.commondatastorage.go
 
 // Define snakes and ladders
 const snakesAndLadders = {
-  88: 53, 64: 44, 19: 1, 52: 32, 13: 7, 55: 26, 38: 18, // Snakes
+  88: 53, 64: 44, 19: 1, 80:41, 52: 32, 13: 7, 55: 26, 38: 18, // Snakes
   29: 48, 63: 84, 16: 25, 46: 67, 37: 56, 86: 96, 3: 23, 40: 59 // Ladders
 };
 
