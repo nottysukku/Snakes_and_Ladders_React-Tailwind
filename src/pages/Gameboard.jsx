@@ -24,7 +24,7 @@ const players = [player1, player2];
 const ladders = [ladder1, ladder2, ladder3];
 const snakes = [snake1, snake2, snake3];
 const diceImages = [dice1, dice2, dice3, dice4, dice5, dice6];
-const dicerollsound = new Audio('/src/assets/rpg-dice-rolling-95182.mp3');
+const dicerollsound = new Audio('https://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3');
 
 // Define snakes and ladders
 const snakesAndLadders = {
