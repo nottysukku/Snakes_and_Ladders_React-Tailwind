@@ -34,7 +34,7 @@ const snakesAndLadders = {
 
 function Gameboard({ player1Name, player2Name }) {
   const [diceState, setDiceState] = useState({ value: 1, image: diceImages[0] });
-  const [playerPositions, setPlayerPositions] = useState([90, 1]);
+  const [playerPositions, setPlayerPositions] = useState([1, 1]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
