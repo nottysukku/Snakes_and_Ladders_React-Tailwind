@@ -28,7 +28,7 @@ const dicerollsound = new Audio('https://codeskulptor-demos.commondatastorage.go
 
 // Define snakes and ladders
 const snakesAndLadders = {
-  88: 53, 64: 44, 19: 1, 80:41, 52: 32, 13: 7, 55: 26, 38: 18, // Snakes
+  88: 53, 64: 44, 19: 1, 80: 41, 52: 32, 13: 7, 55: 26, 38: 18, // Snakes
   29: 48, 63: 84, 16: 25, 46: 67, 37: 56, 86: 96, 3: 23, 40: 59 // Ladders
 };
 
@@ -41,7 +41,7 @@ function GameboardAI() {
   const [isDiceRolling, setIsDiceRolling] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
   const boardRef = useRef(null);
-
+  
   useEffect(() => {
     if (playerPositions.some(pos => pos === 100)) {
       setGameOver(true);
@@ -50,6 +50,7 @@ function GameboardAI() {
       // AI player's turn
       setTimeout(() => rollDice(), 1500);
     }
+      
   }, [playerPositions, currentPlayer, gameOver]);
 
   const getCoordinates = (position) => {
@@ -108,7 +109,7 @@ function GameboardAI() {
       });
   
       // Add a delay between each step
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise(resolve => setTimeout(resolve, 300));
     }
   
     // Check for snakes and ladders only if we land exactly on one
@@ -127,13 +128,13 @@ function GameboardAI() {
       setGameOver(true);
       setWinner(currentPlayer);
     } else {
-      // Check if the player rolled a 6; if so, they get another turn
-      if (spaces !== 6) {
+     
+     
         // Switch to the next player
         setCurrentPlayer(prevPlayer => (prevPlayer + 1) % 2);
-      }
     }
-  
+      
+    
     setIsMoving(false);
   };
   
@@ -252,7 +253,7 @@ function GameboardAI() {
 
         {gameOver && (
           <div className="text-center mt-4">
-            <h2 className="text-2xl font-bold text-black">Player {winner + 1} Wins!</h2>
+            <h2 className="text-2xl font-bold text-white">Player {winner + 1} Wins!</h2>
             <button onClick={resetGame} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
               Restart Game
             </button>

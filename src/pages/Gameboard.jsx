@@ -105,7 +105,7 @@ function Gameboard({ player1Name, player2Name }) {
       });
   
       // Add a delay between each step
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise(resolve => setTimeout(resolve, 300));
     }
   
     // Check for snakes and ladders only if we land exactly on one
