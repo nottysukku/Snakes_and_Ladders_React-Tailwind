@@ -1,6 +1,6 @@
 .footer {
-    background-color: #430f0f;
-    color: white;
+    background-color: #3f3d3d;
+    color: rgb(0, 0, 0);
     padding: 20px;
     position: relative;
     overflow: hidden;
@@ -27,7 +27,7 @@
   }
   
   .footer-link {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
@@ -61,7 +61,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #ff6f61, #ffb74d);
+    background: linear-gradient(45deg, #0a6fea, #cb2e2e);
     position: absolute;
     top: 50%;
     left: 50%;

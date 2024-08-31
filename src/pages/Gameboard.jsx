@@ -32,9 +32,9 @@ const snakesAndLadders = {
   29: 48, 63: 84, 16: 25, 46: 67, 37: 56, 86: 96, 3: 23, 40: 59 // Ladders
 };
 
-function Gameboard() {
+function Gameboard({ player1Name, player2Name }) {
   const [diceState, setDiceState] = useState({ value: 1, image: diceImages[0] });
-  const [playerPositions, setPlayerPositions] = useState([1, 1]);
+  const [playerPositions, setPlayerPositions] = useState([90, 1]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
@@ -71,7 +71,7 @@ function Gameboard() {
     const rollInterval = setInterval(() => {
       const randomValue = Math.floor(Math.random() * 6) + 1;
       setDiceState({ value: randomValue, image: diceImages[randomValue - 1] });
-    }, 100);
+    }, 200);
 
     setTimeout(() => {
       clearInterval(rollInterval);
@@ -124,8 +124,11 @@ function Gameboard() {
       setGameOver(true);
       setWinner(currentPlayer);
     } else {
-      // Switch to the next player
-      setCurrentPlayer(prevPlayer => (prevPlayer + 1) % 2);
+      // Check if the player rolled a 6; if so, they get another turn
+      if (spaces !== 6) {
+        // Switch to the next player
+        setCurrentPlayer(prevPlayer => (prevPlayer + 1) % 2);
+      }
     }
   
     setIsMoving(false);
@@ -242,13 +245,15 @@ function Gameboard() {
             />
           </motion.div>
         </div>
-
-        {gameOver && (
-          <div className="text-center mt-4">
-            <h2 className="text-2xl font-bold text-black">Player {winner + 1} Wins!</h2>
-            <button onClick={resetGame} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-              Restart Game
-            </button>
+        <div className="relative text-xl text-center mt-1 text-white font-bold mb-4">
+  Current Turn: {currentPlayer === 0 ? player1Name : player2Name}
+</div>
+      {gameOver && (
+        <div className="text-center relative -top-4">
+          <h2 className="text-l font-bold text-white">{`(${winner === 0 ? player1Name : player2Name}) Wins!`}</h2>
+          <button onClick={resetGame} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+            Restart Game
+          </button>
           </div>
         )}
       </div>

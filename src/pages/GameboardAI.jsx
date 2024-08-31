@@ -48,7 +48,7 @@ function GameboardAI() {
       setWinner(currentPlayer);
     } else if (currentPlayer === 1 && !gameOver) {
       // AI player's turn
-      setTimeout(() => rollDice(), 1000);
+      setTimeout(() => rollDice(), 1500);
     }
   }, [playerPositions, currentPlayer, gameOver]);
 
@@ -127,8 +127,11 @@ function GameboardAI() {
       setGameOver(true);
       setWinner(currentPlayer);
     } else {
-      // Switch to the next player
-      setCurrentPlayer(prevPlayer => (prevPlayer + 1) % 2);
+      // Check if the player rolled a 6; if so, they get another turn
+      if (spaces !== 6) {
+        // Switch to the next player
+        setCurrentPlayer(prevPlayer => (prevPlayer + 1) % 2);
+      }
     }
   
     setIsMoving(false);
